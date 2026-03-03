@@ -116,7 +116,7 @@
       background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(10, 44, 255, 0.8) 0%, rgba(10, 44, 255, 0.4) 30%, transparent 80%) !important;
     }
 
-    /* شعار الشركة مع دخان أزرق دائم */
+    /* شعار الشركة مع تاج بجانب الصاروخ */
     .company-logo {
       width: 180px;
       height: 180px;
@@ -133,9 +133,27 @@
       margin: 0 auto;
       position: relative;
     }
-    .company-logo i {
+    .company-logo .rocket-icon {
+      position: relative;
+      z-index: 2;
       filter: drop-shadow(0 0 10px rgba(10,44,255,0.8));
       animation: smokePuff 3s infinite ease-in-out;
+    }
+    .company-logo .crown-icon {
+      position: absolute;
+      bottom:-0px;
+      left: 48%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #FFD700; /* ذهبي */
+      filter: drop-shadow(0 0 8px gold);
+      z-index: 3;
+      text-shadow: 0 0 10px rgba(255,215,0,0.8);
+      animation: crownGlow 2s infinite alternate;
+    }
+    @keyframes crownGlow {
+      0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+      100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
     }
     .company-logo::after {
       content: '';
@@ -283,7 +301,7 @@
     }
     /* تحسين ظهور نص زر المشروع */
     .project-link {
-      color: #1e293b; /* داكن للوضع الفاتح */
+      color: #1e293b;
       background: white;
       padding: 0.5rem 1.5rem;
       border-radius: 2rem;
@@ -310,7 +328,7 @@
     </div>
     <!-- الشعار الذي يظهر بعد الصاروخ -->
     <div class="logo-after-rocket">
-      <i class="fa-solid fa-crown"></i> <!-- أيقونة تاج تعبر عن Royal Blue -->
+      <i class="fa-solid fa-crown"></i> <!-- تاج يعبر عن Royal Blue -->
     </div>
     <div class="loading-text">ROYAL BLUE</div>
   </div>
@@ -337,10 +355,11 @@
 
   <main class="relative z-10 pt-28 px-4 sm:px-8 max-w-6xl mx-auto">
 
-    <!-- القسم الرئيسي (Hero) -->
+    <!-- القسم الرئيسي (Hero) مع تاج بجانب الصاروخ -->
     <section class="flex flex-col md:flex-row items-center gap-12 mb-32 opacity-0 animate-[fadeUp_0.8s_ease-out_forwards]">
       <div class="company-logo">
-        <i class="fa-solid fa-rocket"></i>
+        <i class="fa-solid fa-rocket rocket-icon"></i>
+        <i class="fa-solid fa-crown crown-icon"></i> <!-- تاج ذهبي -->
       </div>
       <div class="flex-1 text-center md:text-right">
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
@@ -386,10 +405,10 @@
           <h3 class="text-2xl font-bold mb-2">مواقع الشركات</h3>
           <p class="text-gray-700 dark:text-gray-200">تصاميم عصرية تعكس هوية العلامة التجارية وتجذب الزوار.</p>
         </div>
-        <!-- بطاقة 4 - تعديل: تطبيقات ويب بدلاً من جوال -->
+        <!-- بطاقة 4 - تطبيقات ويب -->
         <div class="glass-card p-8 text-center">
           <div class="w-20 h-20 mx-auto rounded-full bg-royal-light flex items-center justify-center text-4xl mb-4 royal-text shadow-lg">
-            <i class="fa-solid fa-laptop-code"></i> <!-- أيقونة تطبيقات ويب -->
+            <i class="fa-solid fa-laptop-code"></i>
           </div>
           <h3 class="text-2xl font-bold mb-2">تطبيقات ويب</h3>
           <p class="text-gray-700 dark:text-gray-200">تطبيقات ويب تفاعلية وسريعة تعمل على جميع المتصفحات والأجهزة.</p>
@@ -571,7 +590,7 @@
       icon.classList.toggle('fa-sun');
     });
 
-    // إخفاء شاشة التحميل بعد 3 ثوان (2.5 ثانية حركة الصاروخ + 0.5 ظهور الشعار)
+    // إخفاء شاشة التحميل بعد 3 ثوان
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('preloader').classList.add('hidden');
